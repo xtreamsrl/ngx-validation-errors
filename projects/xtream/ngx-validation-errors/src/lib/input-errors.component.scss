@@ -1,0 +1,33 @@
+:host {
+  position: absolute;
+
+  .error-wrapper {
+    position: relative;
+    left: 41px;
+    bottom: 2px;
+
+    span {
+      font-size: 0.8em;
+      color: red;
+      font-weight: 500;
+    }
+  }
+
+}
+
+:host(.is-inner) {
+  position: absolute;
+
+  .error-wrapper {
+    position: relative;
+    left: 37px;
+    bottom: 20px;
+
+    span {
+      font-size: 0.8em;
+      color: red;
+      font-weight: 500;
+    }
+  }
+}
+

@@ -1,0 +1,17 @@
+{
+  "HOME": {
+    "TITLE": "Validation erorrs example"
+  },
+  "GENERAL": {
+    "ERRORS": {
+      "MINLENGTH": "The field it too short. You need ti insert at least {{minlength.requiredLength}}"
+    }
+  },
+  "USER": {
+    "REGISTRATION": {
+      "ERRORS": {
+        "MINLENGTH": "Name must be at least {{minlength.requiredLength}}"
+      }
+    }
+  }
+}
