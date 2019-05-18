@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, HostBinding, Input} from '@angular/core';
 import {AbstractControl, AbstractControlDirective} from '@angular/forms';
 import {ErrorsComponent} from './error-validation-config';
 
@@ -13,7 +13,7 @@ import {ErrorsComponent} from './error-validation-config';
   `,
   styleUrls: ['./input-errors.component.scss']
 })
-export class InputErrorsComponent implements OnInit, ErrorsComponent {
+export class InputErrorsComponent implements ErrorsComponent {
 
   @Input() public messages: string[] = [];
   @Input() public params: {[key: string]: any} = {};
@@ -21,15 +21,5 @@ export class InputErrorsComponent implements OnInit, ErrorsComponent {
 
   @Input()
   private control: AbstractControlDirective | AbstractControl;
-
-  ngOnInit(): void {
-  }
-
-  shouldShowErrors(): boolean {
-    return this.control &&
-      this.control.errors &&
-      (this.control.dirty || this.control.touched);
-  }
-
 
 }

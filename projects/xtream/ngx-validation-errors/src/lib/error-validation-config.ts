@@ -9,6 +9,6 @@ export interface ErrorsComponent {
 export type ValidationErrorsConfig = {
   defaultContext?: string;
   errorComponent?: ErrorsComponent;
-}
+};
 
 export const VALIDATION_ERROR_CONFIG = new InjectionToken<ValidationErrorsConfig>('app.config');

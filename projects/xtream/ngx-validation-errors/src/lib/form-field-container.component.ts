@@ -14,8 +14,6 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {FormControlName} from '@angular/forms';
-import {InputErrorsComponent} from './input-errors.component';
-import {FormFieldDirective} from './form-field.directive';
 import {TranslateService} from '@ngx-translate/core';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
 
@@ -32,12 +30,11 @@ function toScreamingSnakeCase(input: string): string {
   `
 })
 //    <input-errors [innerValidationError]="innerValidationError" [messages]="messages" [params]="messageParams"></input-errors>
-export class FormFieldContainerComponent implements AfterContentInit, AfterViewInit {
+export class FormFieldContainerComponent implements AfterViewInit {
 
   @ContentChild(FormControlName) formControl: FormControlName;
-  @ContentChild(InputErrorsComponent) public messagesBlock: InputErrorsComponent;
 
-  @ContentChild(FormFieldDirective, {read: ElementRef}) input: ElementRef;
+  @ContentChild(FormControlName, {read: ElementRef}) input: ElementRef;
 
   @Input() customErrorMessages: {} = {};
   @Input() messageParams: {} = {};

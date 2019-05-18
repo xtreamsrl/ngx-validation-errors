@@ -2,7 +2,6 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {InputErrorsComponent} from './input-errors.component';
 import {TranslateModule} from '@ngx-translate/core';
-import {FormFieldDirective} from './form-field.directive';
 import {FormFieldContainerComponent} from './form-field-container.component';
 import {ValidationContextComponent} from './validation-context.component';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
@@ -10,7 +9,6 @@ import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validatio
 @NgModule({
   declarations: [
     InputErrorsComponent,
-    FormFieldDirective,
     FormFieldContainerComponent,
     ValidationContextComponent
   ],
@@ -20,7 +18,6 @@ import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validatio
   ],
   exports: [
     InputErrorsComponent,
-    FormFieldDirective,
     FormFieldContainerComponent,
     ValidationContextComponent
   ],
