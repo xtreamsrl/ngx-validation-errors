@@ -34,7 +34,6 @@ function toScreamingSnakeCase(input: string): string {
 //    <input-errors [innerValidationError]="innerValidationError" [messages]="messages" [params]="messageParams"></input-errors>
 export class FormFieldContainerComponent implements AfterContentInit, AfterViewInit {
 
-
   @ContentChild(FormControlName) formControl: FormControlName;
   @ContentChild(InputErrorsComponent) public messagesBlock: InputErrorsComponent;
 
@@ -73,7 +72,6 @@ export class FormFieldContainerComponent implements AfterContentInit, AfterViewI
   }
 
   updateErrorComponent() {
-    console.debug('setting info',this.componentRef, this.formControl.name, this.messages, this.messageParams);
     this.addErrorComponent();
 
     if (this.componentRef) {
@@ -87,7 +85,6 @@ export class FormFieldContainerComponent implements AfterContentInit, AfterViewI
   @HostBinding('class.has-error')
   get hasErrors(): boolean {
     const hasError = (!this.formControl.valid && this.formControl.dirty && this.formControl.touched) && !this.validationDisabled;
-    console.debug('formControl', this.formControl.name, hasError);
 
     if (hasError && this.input && this.input.nativeElement) {
       this.messages = Object.keys(this.formControl.errors).map(error => {
@@ -113,9 +110,9 @@ export class FormFieldContainerComponent implements AfterContentInit, AfterViewI
       } catch (e) {
       }
       this.renderer.addClass(this.input.nativeElement, 'is-invalid');
+
     }
     this.updateErrorComponent();
-    console.debug('formControl', this.formControl.name, this.messageParams, this.messages);
 
     return hasError;
   }
@@ -123,7 +120,7 @@ export class FormFieldContainerComponent implements AfterContentInit, AfterViewI
   @HostBinding('class.has-success')
   get hasSuccess(): boolean {
     const hasSuccess = (
-      !this.formControl.valid &&
+      this.formControl.valid &&
       this.formControl.dirty && this.formControl.touched) &&
       !this.validationDisabled;
     if (hasSuccess && this.input && this.input.nativeElement) {
