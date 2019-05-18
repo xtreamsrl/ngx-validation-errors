@@ -32,7 +32,7 @@ function toScreamingSnakeCase(input: string): string {
   `
 })
 //    <input-errors [innerValidationError]="innerValidationError" [messages]="messages" [params]="messageParams"></input-errors>
-export class InputValidatorComponent implements AfterContentInit, AfterViewInit {
+export class FormFieldContainerComponent implements AfterContentInit, AfterViewInit {
 
 
   @ContentChild(FormControlName) formControl: FormControlName;

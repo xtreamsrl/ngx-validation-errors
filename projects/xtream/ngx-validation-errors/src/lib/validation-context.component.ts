@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList} from '@angular/core';
-import {InputValidatorComponent} from './input-validator.component';
+import {FormFieldContainerComponent} from './form-field-container.component';
 
 @Component({
   // tslint:disable:component-selector
@@ -8,7 +8,7 @@ import {InputValidatorComponent} from './input-validator.component';
 })
 export class ValidationContextComponent implements AfterContentInit {
 
-  @ContentChildren(InputValidatorComponent, {descendants: true}) validators: QueryList<InputValidatorComponent>;
+  @ContentChildren(FormFieldContainerComponent, {descendants: true}) validators: QueryList<FormFieldContainerComponent>;
 
   // tslint:disable:no-input-rename
   @Input('validationContext') validationContext: string;

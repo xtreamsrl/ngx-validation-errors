@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {InputErrorsComponent} from './input-errors.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {FormFieldDirective} from './form-field.directive';
-import {InputValidatorComponent} from './input-validator.component';
+import {FormFieldContainerComponent} from './form-field-container.component';
 import {ValidationContextComponent} from './validation-context.component';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
 
@@ -11,7 +11,7 @@ import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validatio
   declarations: [
     InputErrorsComponent,
     FormFieldDirective,
-    InputValidatorComponent,
+    FormFieldContainerComponent,
     ValidationContextComponent
   ],
   imports: [
@@ -21,7 +21,7 @@ import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validatio
   exports: [
     InputErrorsComponent,
     FormFieldDirective,
-    InputValidatorComponent,
+    FormFieldContainerComponent,
     ValidationContextComponent
   ],
   entryComponents: [
