@@ -25,7 +25,7 @@ function toScreamingSnakeCase(input: string): string {
 
 @Component({
   // tslint:disable:component-selector
-  selector: '[formFieldContainer], formFieldContainer',
+  selector: '[formFieldContainer], form-field-container',
   template: `
     <ng-content></ng-content>
     <ng-container #errorsContainer></ng-container>
@@ -132,12 +132,6 @@ export class FormFieldContainerComponent implements AfterContentInit, AfterViewI
       }
     }
     return;
-  }
-
-  ngAfterContentInit(): void {
-    if (this.messagesBlock) {
-      this.messagesBlock.messages = this.messages;
-    }
   }
 
   public setValidationContext(context: string): void {
