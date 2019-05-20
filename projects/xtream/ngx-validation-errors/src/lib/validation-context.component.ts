@@ -11,7 +11,7 @@ export class ValidationContextComponent implements AfterContentInit {
   @ContentChildren(FormFieldContainerComponent, {descendants: true}) validators: QueryList<FormFieldContainerComponent>;
 
   // tslint:disable:no-input-rename
-  @Input('validationContext') validationContext: string;
+  @Input() validationContext: string;
   @Input() innerValidationError: boolean;
 
   ngAfterContentInit(): void {

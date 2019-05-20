@@ -86,9 +86,9 @@ export class FormFieldContainerComponent implements AfterViewInit {
     if (hasError && this.input && this.input.nativeElement) {
       this.messages = Object.keys(this.formControl.errors).map(error => {
         const fieldName = this.formControl.name;
-        const errorKey = `ERRORS.${toScreamingSnakeCase(fieldName)}.${toScreamingSnakeCase(error)}`;
+        const errorKey = `${toScreamingSnakeCase(fieldName)}.ERRORS.${toScreamingSnakeCase(error)}`;
         if (this.translateService.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
-          return `${this.validationErrorsConfig.defaultContext}.${errorKey}`;
+          return `${this.validationErrorsConfig.defaultContext}.ERRORS.${toScreamingSnakeCase(error)}`;
         } else {
           return `${this.validationContext}.${errorKey}`;
         }
