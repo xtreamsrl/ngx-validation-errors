@@ -4,7 +4,15 @@
   },
   "GENERAL": {
     "ERRORS": {
-      "MINLENGTH": "The field it too short. You need ti insert at least {{minlength.requiredLength}}"
+      "MINLENGTH": "The field it too short. You need ti insert at least {{requiredLength}}"
+    }
+  },
+  "NEW_HERO": {
+    "NAME": {
+      "ERRORS": {
+        "MINLENGTH" : "The hero name must be at least {{requiredLength}} characters",
+        "REQUIRED" : "The hero name is required"
+      }
     }
   },
   "USER": {

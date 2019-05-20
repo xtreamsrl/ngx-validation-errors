@@ -25,7 +25,10 @@ export function httpLoaderFactory(http: HttpClient): TranslateLoader {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxValidationErrorsModule.forRoot(),
+    NgxValidationErrorsModule.forRoot({
+      defaultContext: 'CUSTOM_GENERAL',
+      errorComponent: CustomErrorsComponent as any
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
