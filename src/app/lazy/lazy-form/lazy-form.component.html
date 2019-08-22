@@ -1,0 +1,32 @@
+
+<div style="width: 40%; text-align: center;margin: auto">
+  <img src="assets/images/logo-blu.svg"/>
+</div>
+<h2 style="text-align: center">xtream validation errors lazy</h2>
+<form [formGroup]="heroForm" validationContext="NEW_HERO" innerValidationError="true">
+  <div formFieldContainer class="input-wrapper form-group">
+    <label>Name</label>
+    <input class="form-control" formControlName="name"/>
+  </div>
+  <div formFieldContainer class="input-wrapper form-group">
+    <label>Surmane</label>
+    <input class="form-control" formControlName="surname"/>
+  </div>
+  <button class="btn btn-primary" [disabled]="heroForm.invalid">Submit</button>
+
+</form>
+
+
+<form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
+  <div formFieldContainer class="input-wrapper form-group">
+    <label>Name</label>
+    <input class="form-control" formControlName="name"/>
+  </div>
+  <div formFieldContainer class="input-wrapper form-group">
+    <label>Surmane</label>
+    <input class="form-control" formControlName="surname"/>
+  </div>
+  <button class="btn btn-primary" [disabled]="heroForm.invalid">Submit</button>
+
+</form>
+

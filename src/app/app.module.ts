@@ -9,6 +9,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CustomErrorsComponent} from './custom-errors/custom-errors.component';
+import { MainFromComponent } from './main-from/main-from.component';
+import {SharedModule} from './shared/shared.module';
 
 export function httpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -17,12 +19,14 @@ export function httpLoaderFactory(http: HttpClient): TranslateLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    CustomErrorsComponent
+    CustomErrorsComponent,
+    MainFromComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     NgxValidationErrorsModule.forRoot({
@@ -39,7 +43,10 @@ export function httpLoaderFactory(http: HttpClient): TranslateLoader {
   ],
   providers: [],
   entryComponents: [CustomErrorsComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    MainFromComponent
+    ]
 })
 export class AppModule {
 }
