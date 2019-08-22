@@ -1,1 +1,1 @@
-export * from './lib/ngx-validation-errors.module';
+export {NgxValidationErrorsModule} from './lib/ngx-validation-errors.module';

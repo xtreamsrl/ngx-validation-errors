@@ -1,10 +1,10 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 import {InputErrorsComponent} from './input-errors.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {FormFieldContainerComponent} from './form-field-container.component';
 import {ValidationContextComponent} from './validation-context.component';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validatio
     ValidationContextComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     TranslateModule
   ],
   exports: [
