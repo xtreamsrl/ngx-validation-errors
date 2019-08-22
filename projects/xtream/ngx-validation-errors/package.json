@@ -1,7 +1,7 @@
 {
   "name": "@xtream/ngx-validation-errors",
   "author": "Luca Micieli <luca.micieli@xtreamers.io>",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "url": "https://github.com/xtreamsrl/ngx-validation-errors"
   },
