@@ -11,4 +11,4 @@ export type ValidationErrorsConfig = {
   errorComponent?: ErrorsComponent;
 };
 
-export const VALIDATION_ERROR_CONFIG = new InjectionToken<ValidationErrorsConfig>('app.config');
+export const VALIDATION_ERROR_CONFIG = new InjectionToken<ValidationErrorsConfig>('validationError.config');
