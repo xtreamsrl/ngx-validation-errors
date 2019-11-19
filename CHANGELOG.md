@@ -1,3 +1,18 @@
+## 0.1.0 (2019-11-19)
+
+
+### Features
+
+* **array:** add array controls validation
+
+## 0.0.4 (2019-10-31)
+
+
+### Bug Fixes
+
+* change forRoot method to work with AOT
+
+
 ## 0.0.3 (2019-08-2)
 
 
