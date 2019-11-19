@@ -1,5 +1,6 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList} from '@angular/core';
 import {FormFieldContainerComponent} from './form-field-container.component';
+import {FormArrayContainerComponent} from './form-array-container.component';
 
 @Component({
   // tslint:disable:component-selector
@@ -8,15 +9,22 @@ import {FormFieldContainerComponent} from './form-field-container.component';
 })
 export class ValidationContextComponent implements AfterContentInit {
 
-  @ContentChildren(FormFieldContainerComponent, {descendants: true}) validators: QueryList<FormFieldContainerComponent>;
+  @ContentChildren(FormFieldContainerComponent, {descendants: true}) fieldValidators: QueryList<FormFieldContainerComponent>;
+  @ContentChildren(FormArrayContainerComponent, {descendants: true}) arrayValidators: QueryList<FormArrayContainerComponent>;
 
   // tslint:disable:no-input-rename
   @Input() validationContext: string;
   @Input() innerValidationError: boolean;
 
   ngAfterContentInit(): void {
-    if (this.validators) {
-      this.validators.forEach(i => {
+    if (this.fieldValidators) {
+      this.fieldValidators.forEach(i => {
+        i.setValidationContext(this.validationContext);
+        i.setInnerValidation(this.innerValidationError);
+      });
+    }
+    if (this.arrayValidators) {
+      this.arrayValidators.forEach(i => {
         i.setValidationContext(this.validationContext);
         i.setInnerValidation(this.innerValidationError);
       });

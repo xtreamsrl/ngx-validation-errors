@@ -6,10 +6,11 @@ import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validatio
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
+import {FormArrayContainerComponent} from './form-array-container.component';
 
 
 export const defaultConfig = {
-  defaultContext: 'general',
+  defaultContext: 'GENERAL',
   errorComponent: InputErrorsComponent as any
 } as ValidationErrorsConfig;
 
@@ -34,6 +35,7 @@ export function configFactory(customConfig: ValidationErrorsConfig, currentConfi
   declarations: [
     InputErrorsComponent,
     FormFieldContainerComponent,
+    FormArrayContainerComponent,
     ValidationContextComponent
   ],
   imports: [
@@ -45,6 +47,7 @@ export function configFactory(customConfig: ValidationErrorsConfig, currentConfi
   exports: [
     InputErrorsComponent,
     FormFieldContainerComponent,
+    FormArrayContainerComponent,
     ValidationContextComponent
   ],
   entryComponents: [
