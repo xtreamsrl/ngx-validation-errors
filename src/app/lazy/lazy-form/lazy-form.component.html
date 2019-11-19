@@ -12,6 +12,15 @@
     <label>Surmane</label>
     <input class="form-control" formControlName="surname"/>
   </div>
+  <div formArrayContainer>
+    <div formArrayName="checkBoxes" class="form-group">
+      <div *ngFor="let check of boxesInfo; let i = index">
+        <input type="checkbox" id="check_{{i}}" [formControlName]="i">
+        <label for="check_{{i}}" id="label_check_{{i}}">{{boxesInfo[i]}}</label>
+      </div>
+    </div>
+  </div>
+
   <button class="btn btn-primary" [disabled]="heroForm.invalid">Submit</button>
 
 </form>

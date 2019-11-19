@@ -4,7 +4,8 @@
   },
   "GENERAL": {
     "ERRORS": {
-      "MINLENGTH": "The field it too short. You need ti insert at least {{requiredLength}}"
+      "MINLENGTH": "The field it too short. You need ti insert at least {{requiredLength}}",
+      "REQUIRED" : "The field is required"
     }
   },
   "NEW_HERO": {
