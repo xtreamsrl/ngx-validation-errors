@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ContentChildren, Input, QueryList} from '@angular/core';
+import {AfterContentInit, ChangeDetectorRef, Component, ContentChildren, Input, QueryList} from '@angular/core';
 import {FormFieldContainerComponent} from './form-field-container.component';
 import {FormArrayContainerComponent} from './form-array-container.component';
 
@@ -16,6 +16,10 @@ export class ValidationContextComponent implements AfterContentInit {
   @Input() validationContext: string;
   @Input() innerValidationError: boolean;
 
+
+  constructor(private cdRef: ChangeDetectorRef) {
+  }
+
   ngAfterContentInit(): void {
     if (this.fieldValidators) {
       this.fieldValidators.forEach(i => {
@@ -30,4 +34,21 @@ export class ValidationContextComponent implements AfterContentInit {
       });
     }
   }
+
+  public clear(): void {
+
+    if (this.fieldValidators) {
+      this.fieldValidators.forEach(v => {
+        v.clear();
+      });
+    }
+
+    if (this.arrayValidators) {
+      this.arrayValidators.forEach(v => {
+        v.clear();
+      });
+    }
+    this.cdRef.markForCheck();
+  }
+
 }

@@ -1,8 +1,8 @@
-import {AfterViewInit, ComponentFactoryResolver, ComponentRef, ElementRef, HostBinding, Inject, Input, Renderer2, ViewChild, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, HostBinding, Inject, Input, Renderer2, ViewChild, ViewContainerRef} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
 import {toScreamingSnakeCase} from './utils';
-import {ControlContainer} from '@angular/forms';
+import {AbstractControl} from '@angular/forms';
 
 export abstract class FormValidationContainer implements AfterViewInit {
 
@@ -22,6 +22,7 @@ export abstract class FormValidationContainer implements AfterViewInit {
     private elRef: ElementRef,
     private renderer: Renderer2,
     private translateService: TranslateService,
+    private cdRef: ChangeDetectorRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     @Inject(VALIDATION_ERROR_CONFIG) private  validationErrorsConfig: ValidationErrorsConfig) {
     this.validationContext = validationErrorsConfig.defaultContext;
@@ -53,10 +54,11 @@ export abstract class FormValidationContainer implements AfterViewInit {
   @HostBinding('class.has-error')
   get hasErrors(): boolean {
     const hasError = (!this.formControl.valid && this.formControl.dirty && this.formControl.touched) && !this.validationDisabled;
+    console.debug('hasError', this.formControlName, hasError);
 
     if (hasError && this.el && this.el.nativeElement) {
       this.messages = Object.keys(this.formControl.errors).map(error => {
-        const fieldName = this.formControl.name;
+        const fieldName = this.formControlName;
         const errorKey = `${toScreamingSnakeCase(fieldName)}.ERRORS.${toScreamingSnakeCase(error)}`;
         if (this.translateService.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
           return `${this.validationErrorsConfig.defaultContext}.ERRORS.${toScreamingSnakeCase(error)}`;
@@ -109,8 +111,19 @@ export abstract class FormValidationContainer implements AfterViewInit {
   setInnerValidation(innerValidation: boolean): void {
     this.innerValidationError = innerValidation;
   }
-  abstract get formControl(): ControlContainer;
+
+  abstract get formControl(): AbstractControl;
+
+  abstract get formControlName(): string;
 
   abstract get el(): ElementRef;
+
+  public clear() {
+    this.formControl.reset();
+    this.formControl.setErrors(null);
+    this.renderer.removeClass(this.el.nativeElement, 'is-valid');
+    this.renderer.removeClass(this.el.nativeElement, 'is-invalid');
+    this.messages = [];
+  }
 
 }

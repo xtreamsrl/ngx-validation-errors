@@ -18,8 +18,11 @@ export class FormFieldContainerComponent extends FormValidationContainer impleme
   // tslint:disable-next-line:variable-name
   @ContentChild(FormControlName, {read: ElementRef}) _input: ElementRef;
 
-  get formControl(): ControlContainer {
-    return this._formControl;
+  get formControl() {
+    return this._formControl.control;
+  }
+  get formControlName(): string {
+    return this._formControl.name;
   }
 
   get el(): ElementRef<any> {
