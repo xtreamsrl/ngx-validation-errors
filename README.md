@@ -51,6 +51,22 @@ now you can use validationContext and formFieldContainer it your template
 
 According to the Validators set in the FormControl the errors appears when the input is invalid, dirty and touched.
 
+### Clearing
+
+The ValidationContextComponent has a imperative clear that resets all fields removing all errors. 
+
+```
+import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
+
+
+    @ViewChild(ValidationContextComponent) context: ValidationContextComponent;
+
+
+    clearAll() {
+        this.context.clear()
+    }
+}
+```
 ### Configuration
 
 The library can be configured using the `forRoot` static method 
