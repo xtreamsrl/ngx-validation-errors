@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
+import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
 
 function minCheckSelected(size: number) {
   return (control: AbstractControl) => {
@@ -19,6 +20,8 @@ function minCheckSelected(size: number) {
   styleUrls: ['./lazy-form.component.css']
 })
 export class LazyFormComponent implements OnInit {
+
+  @ViewChild('firstForm', {read: ValidationContextComponent}) validationContext: ValidationContextComponent;
 
   heroForm: FormGroup;
 
@@ -40,5 +43,11 @@ export class LazyFormComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.setDefaultLang('en');
     this.translateService.use('en');
+  }
+
+  clearForm() {
+    console.debug('this.validationContext', this.validationContext);
+    this.validationContext.clear();
+
   }
 }

@@ -1,9 +1,5 @@
 
-<div style="width: 40%; text-align: center;margin: auto">
-  <img src="assets/images/logo-blu.svg"/>
-</div>
-<h2 style="text-align: center">xtream validation errors lazy</h2>
-<form [formGroup]="heroForm" validationContext="NEW_HERO" innerValidationError="true">
+<form [formGroup]="heroForm" #firstForm validationContext="NEW_HERO" innerValidationError="true">
   <div formFieldContainer class="input-wrapper form-group">
     <label>Name</label>
     <input class="form-control" formControlName="name"/>
@@ -21,7 +17,8 @@
     </div>
   </div>
 
-  <button class="btn btn-primary" [disabled]="heroForm.invalid">Submit</button>
+  <button class="btn btn-primary" [disabled]="heroForm.invalid" style="margin-right: 15px">Submit</button>
+  <button class="btn btn-secondary" (click)="clearForm()">Clear</button>
 
 </form>
 
