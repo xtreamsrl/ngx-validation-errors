@@ -1,10 +1,10 @@
 # NgxValidationErrors
 
-This library allow you to show dynamically create errors in forms using **FormControlName**.
+This library allows you to show dynamically created errors in forms using **FormControlName**.
 
 ## Messages generation
 
-For each key in form control errors object it creates a translation key that follows the template
+It creates a translation key that follows the following template for each key in the form control errors object
 
 `${validationContext}.${fieldName}.ERRORS.${errorType}`
 
@@ -13,8 +13,8 @@ where:
 - fieldName is the form control name in **SCREAMING_SNAKE_CASE** 
 - errorType is the error key in **SCREAMING_SNAKE_CASE** 
 
-the keys are then translated using  [@ngx-translate](https://github.com/ngx-translate/core) enriching the message using parameters taken from the error object.
-if the key is not present in the language file the message fallback to `${defaultContext}.ERRORS.${errorType}` (_USER.REGISTRATION.NAME.MINLENGTH_ => _GENERAL.ERRORS.MINLENGTH_)
+The keys are then translated using  [@ngx-translate](https://github.com/ngx-translate/core) enriching the message using parameters taken from the error object.
+If the key is not present in the language file the message fallbacks to `${defaultContext}.ERRORS.${errorType}` (_USER.REGISTRATION.NAME.MINLENGTH_ => _GENERAL.ERRORS.MINLENGTH_)
 
 ## Install
 
@@ -38,7 +38,7 @@ export class AppModule {
 }
 ```
 
-now you can use validationContext and formFieldContainer it your template
+now you can use validationContext and formFieldContainer in your template
 
 ```
 <form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
@@ -49,11 +49,11 @@ now you can use validationContext and formFieldContainer it your template
 </form>
 ```
 
-According to the Validators set in the FormControl the errors appears when the input is invalid, dirty and touched.
+According to the Validators set in the FormControl the errors appear when the input is invalid, dirty and touched.
 
 ### Clearing
 
-The ValidationContextComponent has a imperative clear that resets all fields removing all errors. 
+The ValidationContextComponent has an imperative clear that resets all the fields removing all the errors. 
 
 ```
 import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
@@ -94,9 +94,9 @@ export class AppModule {
 }
 ```
  
-you can set the default validation context and the errorComponent. This last one is instantiated dynamically using 
+you can set the default validation context and the errorComponent. The last one is instantiated dynamically using 
 component factory and substituted to the default one, so remember to add it to the entryComponents list.
-It must accept 3 input:
+It must accept 3 inputs:
 ```
 {
   messages: string[];
