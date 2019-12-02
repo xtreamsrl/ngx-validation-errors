@@ -1,0 +1,26 @@
+{
+  "HOME": {
+    "TITLE": "Validation erorrs example"
+  },
+  "GENERAL": {
+    "ERRORS": {
+      "MINLENGTH": "Questo campo è troppo corto. Deve essere almeno di {{requiredLength}}",
+      "REQUIRED" : "Questo campo è obbligatorio"
+    }
+  },
+  "NEW_HERO": {
+    "NAME": {
+      "ERRORS": {
+        "MINLENGTH" : "Il nome dell'eroe deve essere almeno di {{requiredLength}} caratteri",
+        "REQUIRED" : "Il nome dell'eroe è obbligatorio"
+      }
+    }
+  },
+  "USER": {
+    "REGISTRATION": {
+      "ERRORS": {
+        "MINLENGTH": "Il nome deve essere almeno di {{minlength.requiredLength}}"
+      }
+    }
+  }
+}

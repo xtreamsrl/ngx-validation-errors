@@ -50,4 +50,8 @@ export class LazyFormComponent implements OnInit {
     this.validationContext.clear();
 
   }
+
+  chooseLanguage(lan: string) {
+    this.translateService.use(lan);
+  }
 }
