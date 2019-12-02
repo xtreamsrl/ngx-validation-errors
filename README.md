@@ -13,8 +13,8 @@ where:
 - fieldName is the form control name in **SCREAMING_SNAKE_CASE** 
 - errorType is the error key in **SCREAMING_SNAKE_CASE** 
 
-The keys are then translated using  [@ngx-translate](https://github.com/ngx-translate/core) enriching the message using parameters taken from the error object.
-If the key is not present in the language file the message fallbacks to `${defaultContext}.ERRORS.${errorType}` (_USER.REGISTRATION.NAME.MINLENGTH_ => _GENERAL.ERRORS.MINLENGTH_)
+the keys are then translated using a pipe enriching the message using parameters taken from the error object.
+if the key is not present in the language file the message fallbacks to `${defaultContext}.ERRORS.${errorType}` (_USER.REGISTRATION.NAME.MINLENGTH_ => _GENERAL.ERRORS.MINLENGTH_)
 
 ## Install
 
@@ -103,4 +103,54 @@ It must accept 3 inputs:
   params: {[key: string]: any};
   innerValidation: boolean;
 }
+```
+###Message translation
+
+You can use @ngx-translate providing the translate service and a pipe factory.
+
+```typescript
+import {MESSAGES_PIPE_FACTORY_TOKEN, MESSAGES_PROVIDER, NgxValidationErrorsModule} from '@xtream/ngx-validation-errors'; 
+
+export function translatePipeFactoryCreator(translateService: TranslateService) {
+  return (detector: ChangeDetectorRef) => new TranslatePipe(translateService, detector);
+}
+
+@NgModule({
+  providers: [
+    {
+     provide: MESSAGES_PIPE_FACTORY_TOKEN,
+     useFactory: translatePipeFactoryCreator,
+     deps: [TranslateService]
+    },
+    {
+     provide: MESSAGES_PROVIDER,
+     useExisting: TranslateService
+    }
+  ]
+})
+
+```
+
+If you have a custom message mapping you can configure it  providing a custom pipe and service.
+
+```typescript
+import {MESSAGES_PIPE_FACTORY_TOKEN, MESSAGES_PROVIDER, NgxValidationErrorsModule} from '@xtream/ngx-validation-errors';
+
+export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesProviderService) {
+  return (detector: ChangeDetectorRef) => new SimpleErrorPipe(messageProvider, detector);
+}
+
+@NgModule({
+  providers: [
+    {
+      provide: MESSAGES_PIPE_FACTORY_TOKEN,
+      useFactory: simpleCustomPipeFactoryCreator,
+      deps: [SimpleMessagesProviderService]
+    },
+    {
+      provide: MESSAGES_PROVIDER,
+      useExisting: SimpleMessagesProviderService
+    }
+  ]
+})
 ```

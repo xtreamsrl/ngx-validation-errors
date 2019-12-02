@@ -1,3 +1,66 @@
+## 0.3.0 (2019-11-19)
+
+## Breaking Changes
+The 0.3.0 version removes the dependency from @ngx-translate/core to allow using the library
+also without this @ngx-translate or with this or other similar libraries
+
+To update you need to modify the app.module.ts like this:
+```typescript
+import {MESSAGES_PIPE_FACTORY_TOKEN, MESSAGES_PROVIDER, NgxValidationErrorsModule} from '@xtream/ngx-validation-errors'; 
+
+export function translatePipeFactoryCreator(translateService: TranslateService) {
+  return (detector: ChangeDetectorRef) => new TranslatePipe(translateService, detector);
+}
+
+@NgModule({
+  providers: [
+    {
+     provide: MESSAGES_PIPE_FACTORY_TOKEN,
+     useFactory: translatePipeFactoryCreator,
+     deps: [TranslateService]
+    },
+    {
+     provide: MESSAGES_PROVIDER,
+     useExisting: TranslateService
+    }
+  ]
+})
+
+```
+
+The function returns a factory that is used by the library to create a pipe and pass a ChangeDetectorRef instance so on lang change 
+(or similar event) the components can be updated accordingly. 
+
+If you want to use a custom error mapping without translation you can provide your custom pipe and message provider (that exposes an `instant(key:string):string` method)
+like this:
+
+```typescript
+import {MESSAGES_PIPE_FACTORY_TOKEN, MESSAGES_PROVIDER, NgxValidationErrorsModule} from '@xtream/ngx-validation-errors';
+
+export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesProviderService) {
+  return (detector: ChangeDetectorRef) => new SimpleErrorPipe(messageProvider, detector);
+}
+
+@NgModule({
+  providers: [
+    {
+      provide: MESSAGES_PIPE_FACTORY_TOKEN,
+      useFactory: simpleCustomPipeFactoryCreator,
+      deps: [SimpleMessagesProviderService]
+    },
+    {
+      provide: MESSAGES_PROVIDER,
+      useExisting: SimpleMessagesProviderService
+    }
+  ]
+})
+```
+
+### Features
+
+* remove dependency form @ngx-translate
+
+
 ## 0.2.0 (2019-11-19)
 
 ### Features

@@ -24,8 +24,8 @@ export function translatePipeFactoryCreator(translateService: TranslateService) 
 }
 
 
-export function simpleCustomPipeFactoryCreator(translateService: TranslateService) {
-  return (detector: ChangeDetectorRef) => new SimpleErrorPipe(translateService, detector);
+export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesProviderService) {
+  return (detector: ChangeDetectorRef) => new SimpleErrorPipe(messageProvider, detector);
 }
 
 @NgModule({
@@ -52,18 +52,7 @@ export function simpleCustomPipeFactoryCreator(translateService: TranslateServic
     }),
   ],
   providers: [
-    /*
-    snippet to use with @ngx-translate
-    {
-      provide: MESSAGES_PIPE_FACTORY_TOKEN,
-      useFactory: translatePipeFactoryCreator,
-      deps: [TranslateService]
-    },
-    {
-      provide: MESSAGES_PROVIDER,
-      useExisting: TranslateService
-    }
- */
+
     {
       provide: MESSAGES_PIPE_FACTORY_TOKEN,
       useFactory: simpleCustomPipeFactoryCreator,
