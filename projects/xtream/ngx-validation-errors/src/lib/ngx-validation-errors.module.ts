@@ -5,8 +5,9 @@ import {ValidationContextComponent} from './validation-context.component';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TranslateModule} from '@ngx-translate/core';
 import {FormArrayContainerComponent} from './form-array-container.component';
+import {MapToMessagePipe} from './map-to-message.pipe';
+import {InnerMapToMessagePipe} from './inner-map-to-message.pipe';
 
 
 export const defaultConfig = {
@@ -16,6 +17,8 @@ export const defaultConfig = {
 
 export const ValidationErrorsConfigObject = new InjectionToken('ValidationErrorsConfigObject');
 export const FOR_ROOT_OPTIONS_TOKEN = new InjectionToken('forRootOptionToken');
+export const MESSAGES_PROVIDER = new InjectionToken<{instant(key: string): string;}>('MessagesProvider');
+export const MESSAGES_PIPE_FACTORY_TOKEN = new InjectionToken('MessagePipeFactoryToken');
 
 export function configFactory(customConfig: ValidationErrorsConfig, currentConfig: ValidationErrorsConfig) {
   const actualConfig = {...currentConfig};
@@ -36,13 +39,14 @@ export function configFactory(customConfig: ValidationErrorsConfig, currentConfi
     InputErrorsComponent,
     FormFieldContainerComponent,
     FormArrayContainerComponent,
-    ValidationContextComponent
+    ValidationContextComponent,
+    MapToMessagePipe,
+    InnerMapToMessagePipe
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    TranslateModule
+    ReactiveFormsModule
   ],
   exports: [
     InputErrorsComponent,
@@ -67,11 +71,14 @@ export class NgxValidationErrorsModule {
           provide: FOR_ROOT_OPTIONS_TOKEN,
           useValue: config
         },
+        MapToMessagePipe,
         {
           provide: VALIDATION_ERROR_CONFIG,
           useFactory: configFactory,
           deps: [FOR_ROOT_OPTIONS_TOKEN, ValidationErrorsConfigObject]
-        }
+        },
+        MapToMessagePipe,
+        InnerMapToMessagePipe
       ]
     };
   }

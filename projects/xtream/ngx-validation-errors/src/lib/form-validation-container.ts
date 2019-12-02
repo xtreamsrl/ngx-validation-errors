@@ -1,11 +1,10 @@
-import {AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, HostBinding, Inject, Input, Renderer2, ViewChild, ViewContainerRef} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, HostBinding, Inject, Input, Optional, Renderer2, ViewChild, ViewContainerRef} from '@angular/core';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
 import {toScreamingSnakeCase} from './utils';
 import {AbstractControl} from '@angular/forms';
+import {MESSAGES_PROVIDER} from './ngx-validation-errors.module';
 
 export abstract class FormValidationContainer implements AfterViewInit {
-
 
   @Input() customErrorMessages: {} = {};
   @Input() messageParams: {} = {};
@@ -21,7 +20,7 @@ export abstract class FormValidationContainer implements AfterViewInit {
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
-    private translateService: TranslateService,
+    @Optional() @Inject(MESSAGES_PROVIDER) private messageProvider: {instant(key: string): string;},
     private cdRef: ChangeDetectorRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     @Inject(VALIDATION_ERROR_CONFIG) private  validationErrorsConfig: ValidationErrorsConfig) {
@@ -54,13 +53,11 @@ export abstract class FormValidationContainer implements AfterViewInit {
   @HostBinding('class.has-error')
   get hasErrors(): boolean {
     const hasError = (!this.formControl.valid && this.formControl.dirty && this.formControl.touched) && !this.validationDisabled;
-    console.debug('hasError', this.formControlName, hasError);
-
     if (hasError && this.el && this.el.nativeElement) {
       this.messages = Object.keys(this.formControl.errors).map(error => {
         const fieldName = this.formControlName;
         const errorKey = `${toScreamingSnakeCase(fieldName)}.ERRORS.${toScreamingSnakeCase(error)}`;
-        if (this.translateService.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
+        if (this.messageProvider && this.messageProvider.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
           return `${this.validationErrorsConfig.defaultContext}.ERRORS.${toScreamingSnakeCase(error)}`;
         } else {
           return `${this.validationContext}.${errorKey}`;

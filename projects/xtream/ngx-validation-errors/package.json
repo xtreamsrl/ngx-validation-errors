@@ -8,7 +8,6 @@
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "@angular/forms": "^7.2.0",
-    "@ngx-translate/core": "^11.0.1"
+    "@angular/forms": "^7.2.0"
   }
 }

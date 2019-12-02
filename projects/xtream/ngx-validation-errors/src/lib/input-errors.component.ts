@@ -7,9 +7,9 @@ import {ErrorsComponent} from './error-validation-config';
   // tslint:disable-next-line:component-selector
   selector: 'input-errors',
   template: `
-    <div class="error-wrapper">
-      <span class="help-block" *ngFor="let message of messages;">{{ message | translate:params }}</span>
-    </div>
+      <div class="error-wrapper">
+          <span class="help-block" *ngFor="let message of messages;">{{ message | mapToMessage:params }}</span>
+      </div>
   `,
   styleUrls: ['./input-errors.component.scss']
 })
