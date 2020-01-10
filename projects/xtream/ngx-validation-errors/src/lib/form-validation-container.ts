@@ -11,7 +11,7 @@ export abstract class FormValidationContainer implements AfterViewInit {
   @Input() validationDisabled = false;
   @Input() innerValidationError: boolean;
 
-  @ViewChild('errorsContainer', {read: ViewContainerRef}) errorsContainer: ViewContainerRef;
+  @ViewChild('errorsContainer', {read: ViewContainerRef, static: true}) errorsContainer: ViewContainerRef;
 
   public messages: string[];
   private validationContext;
