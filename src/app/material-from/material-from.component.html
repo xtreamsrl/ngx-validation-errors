@@ -1,0 +1,44 @@
+<div style="width: 40%; text-align: center;margin: auto">
+  <img src="assets/images/logo-blu.svg"/>
+</div>
+<h2 style="text-align: center">xtream validation errors</h2>
+<form [formGroup]="heroForm" validationContext="NEW_HERO" innerValidationError="true" #firstForm>
+
+
+  <div style="display:flex;flex-direction: column;">
+    <mat-form-field *ngxValidationErrors="heroForm.get('name'); errors as errors">
+      <input matInput formControlName="name" placeholder="name"/>
+      <mat-error *ngIf="errors">{{errors}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div style="display:flex;flex-direction: column;">
+    <mat-form-field *ngxValidationErrors="heroForm.get('surname'); errors as errors">
+      <input matInput formControlName="surname" placeholder="surname"/>
+      <mat-error *ngIf="errors">{{errors}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary"  [disabled]="heroForm.invalid">Submit</button>
+  <button mat-flat-button color="secondary" (click)="clearForm()">Clear</button>
+
+</form>
+
+<form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
+  <div style="display:flex;flex-direction: column;">
+    <mat-form-field  *ngxValidationErrors="heroForm.get('name');errors as errors">
+      <input matInput formControlName="name" placeholder="name"/>
+      <mat-error *ngIf="errors">{{errors}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div style="display:flex;flex-direction: column;">
+    <mat-form-field  *ngxValidationErrors="heroForm.get('surname');errors as errors">
+      <input matInput formControlName="surname" placeholder="surname"/>
+      <mat-error *ngIf="errors">{{errors}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary"  [disabled]="heroForm.invalid">Submit</button>
+
+</form>
