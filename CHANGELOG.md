@@ -1,3 +1,36 @@
+## 1.0.0 (2020-01-11)
+
+### Features
+
+* update to angular 8
+* add structural directive for controlled errors management
+
+## Breaking Changes
+The 1.0.0 version is compatible with angular 8.
+
+The components have been renamed according to the angular conventions, now they starts with the library prefix.
+Update this
+```angular2html
+<form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
+  <div formFieldContainer>
+    <label>Name</label>
+    <input formControlName="name"/>
+  </div>
+</form>
+```
+changing the name to ngxValidationErrorsField
+
+```angular2html
+<form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
+  <div ngxValidationErrorsField>
+    <label>Name</label>
+    <input formControlName="name"/>
+  </div>
+</form>
+```
+
+The old names are still available bu consider it deprecated!
+
 ## 0.3.0 (2019-11-19)
 
 ## Breaking Changes
