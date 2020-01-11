@@ -1,6 +1,14 @@
 # NgxValidationErrors
 
-This library allows you to show dynamically created errors in forms using **FormControlName**.
+This library allows you to show dynamically created errors in forms.
+
+Choose the version corresponding to your Angular version:
+
+ Angular     | @xtream/ngx-validation-errors
+ ----------- | ------------------- 
+ 7           | 0.x               
+ 8           | 1.x                
+
 
 ## Messages generation
 
