@@ -1,13 +1,13 @@
 {
   "name": "@xtream/ngx-validation-errors",
   "author": "Luca Micieli <luca.micieli@xtreamers.io>",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "repository": {
     "url": "https://github.com/xtreamsrl/ngx-validation-errors"
   },
   "peerDependencies": {
-    "@angular/common": "^7.2.0",
-    "@angular/core": "^7.2.0",
-    "@angular/forms": "^7.2.0"
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0"
   }
 }

@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormArrayContainerComponent} from './form-array-container.component';
 import {MapToMessagePipe} from './map-to-message.pipe';
 import {InnerMapToMessagePipe} from './inner-map-to-message.pipe';
+import {FormFieldEmptyContainerDirective} from './form-field-empty-container.directive';
 
 
 export const defaultConfig = {
@@ -38,6 +39,7 @@ export function configFactory(customConfig: ValidationErrorsConfig, currentConfi
   declarations: [
     InputErrorsComponent,
     FormFieldContainerComponent,
+    FormFieldEmptyContainerDirective,
     FormArrayContainerComponent,
     ValidationContextComponent,
     MapToMessagePipe,
@@ -52,7 +54,8 @@ export function configFactory(customConfig: ValidationErrorsConfig, currentConfi
     InputErrorsComponent,
     FormFieldContainerComponent,
     FormArrayContainerComponent,
-    ValidationContextComponent
+    ValidationContextComponent,
+    FormFieldEmptyContainerDirective
   ],
   entryComponents: [
     InputErrorsComponent

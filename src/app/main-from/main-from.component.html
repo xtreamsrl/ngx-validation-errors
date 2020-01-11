@@ -4,11 +4,11 @@
 </div>
 <h2 style="text-align: center">xtream validation errors</h2>
 <form [formGroup]="heroForm" validationContext="NEW_HERO" innerValidationError="true">
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Name</label>
     <input class="form-control" formControlName="name"/>
   </div>
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Surmane</label>
     <input class="form-control" formControlName="surname"/>
   </div>
@@ -18,11 +18,11 @@
 
 
 <form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Name</label>
     <input class="form-control" formControlName="name"/>
   </div>
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Surmane</label>
     <input class="form-control" formControlName="surname"/>
   </div>

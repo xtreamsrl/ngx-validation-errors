@@ -13,6 +13,10 @@ import {MainFromComponent} from './main-from/main-from.component';
 import {SharedModule} from './shared/shared.module';
 import {SimpleErrorPipe} from './simple-error-pipe.pipe';
 import {SimpleMessagesProviderService} from './simple-messages-provider.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MaterialFromComponent} from './material-from/material-from.component';
 
 export function httpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -33,6 +37,7 @@ export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesPr
     AppComponent,
     CustomErrorsComponent,
     MainFromComponent,
+    MaterialFromComponent,
     SimpleErrorPipe
   ],
   imports: [
@@ -42,7 +47,9 @@ export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesPr
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxValidationErrorsModule.forRoot({}),
+    NgxValidationErrorsModule.forRoot({
+      errorComponent: CustomErrorsComponent as any
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -50,6 +57,9 @@ export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesPr
         deps: [HttpClient]
       }
     }),
+    MatInputModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
   ],
   providers: [
 

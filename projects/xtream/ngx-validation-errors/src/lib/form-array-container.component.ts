@@ -3,8 +3,7 @@ import {ControlContainer, FormArrayName} from '@angular/forms';
 import {FormValidationContainer} from './form-validation-container';
 
 @Component({
-  // tslint:disable:component-selector
-  selector: '[formArrayContainer], form-array-container',
+  selector: '[ngxValidationErrorsArray], ngx-validation-errors-array, [formArrayContainer], form-array-container',
   template: `
       <ng-content></ng-content>
       <ng-container #errorsContainer></ng-container>
@@ -13,10 +12,10 @@ import {FormValidationContainer} from './form-validation-container';
 export class FormArrayContainerComponent extends FormValidationContainer implements AfterViewInit {
 
   // tslint:disable-next-line:variable-name
-  @ContentChild(FormArrayName) _formControl: FormArrayName;
+  @ContentChild(FormArrayName,{ static: true}) _formControl: FormArrayName;
 
   // tslint:disable-next-line:variable-name
-  @ContentChild(FormArrayName, {read: ElementRef}) _el: ElementRef;
+  @ContentChild(FormArrayName, {read: ElementRef,  static: true}) _el: ElementRef;
 
 
   get formControl() {

@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
 
 @Component({
   selector: 'app-custom-errors',
@@ -11,10 +11,13 @@ export class CustomErrorsComponent implements OnInit {
   @Input() public params: {[key: string]: any} = {};
   @Input() @HostBinding('class.is-inner') public innerValidationError: boolean;
 
-  constructor() {
+  @ViewChild('impl', {static: true}) template: TemplateRef<any>;
+
+  constructor(private vcr: ViewContainerRef) {
   }
 
   ngOnInit() {
+    this.vcr.createEmbeddedView(this.template);
   }
 
 }

@@ -21,7 +21,7 @@ function minCheckSelected(size: number) {
 })
 export class LazyFormComponent implements OnInit {
 
-  @ViewChild('firstForm', {read: ValidationContextComponent}) validationContext: ValidationContextComponent;
+  @ViewChild('firstForm', {read: ValidationContextComponent, static: true}) validationContext: ValidationContextComponent;
 
   heroForm: FormGroup;
 

@@ -1,10 +1,9 @@
-import {AfterViewInit, Component, ContentChild, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ContentChild, ElementRef, ViewContainerRef} from '@angular/core';
 import {ControlContainer, FormControlName} from '@angular/forms';
 import {FormValidationContainer} from './form-validation-container';
 
 @Component({
-  // tslint:disable:component-selector
-  selector: '[formFieldContainer], form-field-container',
+  selector: '[ngxValidationErrorsField], ngx-validation-errors-field, [formFieldContainer], form-field-container',
   template: `
       <ng-content></ng-content>
       <ng-container #errorsContainer></ng-container>
@@ -13,10 +12,10 @@ import {FormValidationContainer} from './form-validation-container';
 export class FormFieldContainerComponent extends FormValidationContainer implements AfterViewInit {
 
   // tslint:disable-next-line:variable-name
-  @ContentChild(FormControlName) _formControl: FormControlName;
+  @ContentChild(FormControlName, {static: true}) _formControl: FormControlName;
 
   // tslint:disable-next-line:variable-name
-  @ContentChild(FormControlName, {read: ElementRef}) _input: ElementRef;
+  @ContentChild(FormControlName, {read: ElementRef, static: true}) _input: ElementRef;
 
   get formControl() {
     return this._formControl.control;
