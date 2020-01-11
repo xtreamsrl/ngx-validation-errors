@@ -1,3 +1,11 @@
+## 0.4.0 (2020-01-11)
+
+### Features
+
+* add structural directive for controlled errors management
+* add standard names for components
+
+
 ## 0.3.0 (2019-11-19)
 
 ## Breaking Changes
