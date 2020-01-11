@@ -3,7 +3,7 @@ import {ControlContainer, FormArrayName} from '@angular/forms';
 import {FormValidationContainer} from './form-validation-container';
 
 @Component({
-  selector: '[ngxValidationErrorsArray], ngx-validation-errors-array',
+  selector: '[ngxValidationErrorsArray], ngx-validation-errors-array, [formArrayContainer], form-array-container',
   template: `
       <ng-content></ng-content>
       <ng-container #errorsContainer></ng-container>
