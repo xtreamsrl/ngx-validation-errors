@@ -22,8 +22,9 @@ if the key is not present in the language file the message fallbacks to `${defau
 
 ## Usage
 
+
 Import it using
-```
+```typescript
 import {NgxValidationErrorsModule} from '@xtream/ngx-validation-errors';
 
 @NgModule({
@@ -37,25 +38,52 @@ import {NgxValidationErrorsModule} from '@xtream/ngx-validation-errors';
 export class AppModule {
 }
 ```
+### Components with auto errors injection
+now you can use validationContext and ngxValidationErrorsField in your template
 
-now you can use validationContext and formFieldContainer in your template
-
-```
+```angular2html
 <form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
-  <div formFieldContainer>
+  <div ngxValidationErrorsField>
     <label>Name</label>
     <input formControlName="name"/>
   </div>
 </form>
 ```
+or 
+```angular2html
+<form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
+  <ngx-validation-errors-field>
+    <label>Name</label>
+    <input formControlName="name"/>
+  </ngx-validation-errors-field>
+</form>
+```
 
 According to the Validators set in the FormControl the errors appear when the input is invalid, dirty and touched.
+
+### Structural directive
+
+The structural directive has been created for special layout library (like material-ui) that have special input/errors
+components that do non allow to autoInject errors component. The usage is a little bit more verbose but the you control
+errors
+
+```angular2html
+<form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
+    <mat-form-field *ngxValidationErrors="heroForm.get('name'); errors as errors">
+      <input matInput formControlName="name" placeholder="name"/>
+      <mat-error *ngIf="errors">{{errors}}</mat-error>
+    </mat-form-field>
+</form>
+```
+
+the structural directive needs the form control as parameter (like heroForm.get('name'), if you find a better way to retrieve the inner form control instance please open an issue).
+It exposes errors in the template context so you can use them in the ui.
 
 ### Clearing
 
 The ValidationContextComponent has an imperative clear that resets all the fields removing all the errors. 
 
-```
+```typescript
 import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
 
 
@@ -71,7 +99,7 @@ import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
 
 The library can be configured using the `forRoot` static method 
 
-```
+```typescript
 import {NgxValidationErrorsModule} from '@xtream/ngx-validation-errors';
 
 @NgModule({
