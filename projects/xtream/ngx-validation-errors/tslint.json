@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "lib",
+      "ngxValidationErrors",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "lib",
+      "ngx-validation-errors",
       "kebab-case"
     ]
   }

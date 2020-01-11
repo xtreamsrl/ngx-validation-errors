@@ -7,15 +7,15 @@
   <button (click)="chooseLanguage('it')" class="btn btn-secondary">it</button>
 </div>
 <form [formGroup]="heroForm" #firstForm validationContext="NEW_HERO" innerValidationError="true">
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Name</label>
     <input class="form-control" formControlName="name"/>
   </div>
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Surmane</label>
     <input class="form-control" formControlName="surname"/>
   </div>
-  <div formArrayContainer>
+  <div ngxValidationErrorsArray>
     <div formArrayName="checkBoxes" class="form-group">
       <div *ngFor="let check of boxesInfo; let i = index">
         <input type="checkbox" id="check_{{i}}" [formControlName]="i">
@@ -31,11 +31,11 @@
 
 
 <form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Name</label>
     <input class="form-control" formControlName="name"/>
   </div>
-  <div formFieldContainer class="input-wrapper form-group">
+  <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Surmane</label>
     <input class="form-control" formControlName="surname"/>
   </div>
