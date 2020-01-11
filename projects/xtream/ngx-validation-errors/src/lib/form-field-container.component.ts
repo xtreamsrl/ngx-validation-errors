@@ -1,10 +1,9 @@
-import {AfterViewInit, Component, ContentChild, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ContentChild, ElementRef, ViewContainerRef} from '@angular/core';
 import {ControlContainer, FormControlName} from '@angular/forms';
 import {FormValidationContainer} from './form-validation-container';
 
 @Component({
-  // tslint:disable:component-selector
-  selector: '[formFieldContainer], form-field-container',
+  selector: '[ngxValidationErrorsField], ngx-validation-errors-field, [formFieldContainer], form-field-container',
   template: `
       <ng-content></ng-content>
       <ng-container #errorsContainer></ng-container>

@@ -57,7 +57,8 @@ export abstract class FormValidationContainer implements AfterViewInit {
       this.messages = Object.keys(this.formControl.errors).map(error => {
         const fieldName = this.formControlName;
         const errorKey = `${toScreamingSnakeCase(fieldName)}.ERRORS.${toScreamingSnakeCase(error)}`;
-        if (this.messageProvider && this.messageProvider.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
+        if (this.messageProvider &&
+          this.messageProvider.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
           return `${this.validationErrorsConfig.defaultContext}.ERRORS.${toScreamingSnakeCase(error)}`;
         } else {
           return `${this.validationContext}.${errorKey}`;
