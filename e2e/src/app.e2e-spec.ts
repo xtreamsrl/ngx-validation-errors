@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to ngx-validation-errors!');
+    expect(page.getTitleText()).toEqual('ngx-validation-errors app is running!');
   });
 
   afterEach(async () => {

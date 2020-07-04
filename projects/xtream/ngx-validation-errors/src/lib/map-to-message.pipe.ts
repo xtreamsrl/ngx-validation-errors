@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Inject, Optional, Pipe, PipeTransform} from '@angular/core';
 import {InnerMapToMessagePipe} from './inner-map-to-message.pipe';
-import {MESSAGES_PIPE_FACTORY_TOKEN} from './ngx-validation-errors.module';
+import {MESSAGES_PIPE_FACTORY_TOKEN} from './injection-tokens';
 
 @Pipe({
   name: 'mapToMessage',

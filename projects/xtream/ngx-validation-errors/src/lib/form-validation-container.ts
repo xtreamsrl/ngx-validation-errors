@@ -1,8 +1,18 @@
-import {AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, HostBinding, Inject, Input, Optional, Renderer2, ViewChild, ViewContainerRef} from '@angular/core';
-import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ElementRef,
+  HostBinding,
+  Input,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
+import {ValidationErrorsConfig} from './error-validation-config';
 import {toScreamingSnakeCase} from './utils';
 import {AbstractControl} from '@angular/forms';
-import {MESSAGES_PROVIDER} from './ngx-validation-errors.module';
 
 export abstract class FormValidationContainer implements AfterViewInit {
 
@@ -20,10 +30,10 @@ export abstract class FormValidationContainer implements AfterViewInit {
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
-    @Optional() @Inject(MESSAGES_PROVIDER) private messageProvider: {instant(key: string): string;},
+    private messageProvider: { instant(key: string): string; },
     private cdRef: ChangeDetectorRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(VALIDATION_ERROR_CONFIG) private  validationErrorsConfig: ValidationErrorsConfig) {
+    private validationErrorsConfig: ValidationErrorsConfig) {
     this.validationContext = validationErrorsConfig.defaultContext;
   }
 
@@ -56,7 +66,7 @@ export abstract class FormValidationContainer implements AfterViewInit {
     if (hasError && this.el && this.el.nativeElement) {
       this.messages = Object.keys(this.formControl.errors).map(error => {
         const fieldName = this.formControlName;
-        const errorKey = `${toScreamingSnakeCase(fieldName)}.ERRORS.${toScreamingSnakeCase(error)}`;
+        const errorKey = `${toScreamingSnakeCase(fieldName + '')}.ERRORS.${toScreamingSnakeCase(error)}`;
         if (this.messageProvider &&
           this.messageProvider.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
           return `${this.validationErrorsConfig.defaultContext}.ERRORS.${toScreamingSnakeCase(error)}`;
@@ -112,7 +122,7 @@ export abstract class FormValidationContainer implements AfterViewInit {
 
   abstract get formControl(): AbstractControl;
 
-  abstract get formControlName(): string;
+  abstract get formControlName(): string | number;
 
   abstract get el(): ElementRef;
 

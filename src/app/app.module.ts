@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, HammerModule } from '@angular/platform-browser';
 import {ChangeDetectorRef, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -43,6 +43,7 @@ export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesPr
   imports: [
     AppRoutingModule,
     HttpClientModule,
+    HammerModule,
     BrowserModule,
     SharedModule,
     FormsModule,
@@ -75,8 +76,7 @@ export function simpleCustomPipeFactoryCreator(messageProvider: SimpleMessagesPr
   ],
   entryComponents: [CustomErrorsComponent],
   bootstrap: [
-    AppComponent,
-    MainFromComponent
+    AppComponent
   ]
 })
 export class AppModule {

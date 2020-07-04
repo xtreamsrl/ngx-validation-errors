@@ -5,31 +5,25 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es5",
-    "plugins": [
-      {
-        "name": "@angular/language-service"
-      }
-    ],
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "target": "es2015",
     "lib": [
       "es2018",
       "dom"
     ],
     "paths": {
       "@xtream/ngx-validation-errors": [
+        "dist/xtream/ngx-validation-errors/xtream-ngx-validation-errors",
         "dist/xtream/ngx-validation-errors"
-      ],
-      "@xtream/ngx-validation-errors/*": [
-        "dist/xtream/ngx-validation-errors/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

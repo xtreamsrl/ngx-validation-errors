@@ -1,4 +1,5 @@
-import {InjectionToken, ModuleWithProviders, NgModule} from '@angular/core';
+import {FOR_ROOT_OPTIONS_TOKEN, ValidationErrorsConfigObject} from './injection-tokens';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {InputErrorsComponent} from './input-errors.component';
 import {FormFieldContainerComponent} from './form-field-container.component';
 import {ValidationContextComponent} from './validation-context.component';
@@ -15,11 +16,6 @@ export const defaultConfig = {
   defaultContext: 'GENERAL',
   errorComponent: InputErrorsComponent as any
 } as ValidationErrorsConfig;
-
-export const ValidationErrorsConfigObject = new InjectionToken('ValidationErrorsConfigObject');
-export const FOR_ROOT_OPTIONS_TOKEN = new InjectionToken('forRootOptionToken');
-export const MESSAGES_PROVIDER = new InjectionToken<{instant(key: string): string;}>('MessagesProvider');
-export const MESSAGES_PIPE_FACTORY_TOKEN = new InjectionToken('MessagePipeFactoryToken');
 
 export function configFactory(customConfig: ValidationErrorsConfig, currentConfig: ValidationErrorsConfig) {
   const actualConfig = {...currentConfig};
