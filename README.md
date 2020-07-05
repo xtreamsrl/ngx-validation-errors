@@ -7,7 +7,8 @@ Choose the version corresponding to your Angular version:
  Angular     | @xtream/ngx-validation-errors
  ----------- | ------------------- 
  7           | 0.x               
- 8           | 1.x                
+ 8           | 1.x      
+ 9           | 2.x                
 
 
 ## Messages generation

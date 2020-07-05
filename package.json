@@ -8,7 +8,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-lib": "npx ng build @xtream/ngx-validation-errors"
+    "build-lib": "npx ng build @xtream/ngx-validation-errors",
+    "build_lib_prod": "npx ng build @xtream/ngx-validation-errors --prod",
+    "copy-license": "copy .\\LICENSE .\\dist\\xtream\\ngx-validation-errors",
+    "copy-readme": "copy .\\README.md .\\dist\\xtream\\ngx-validation-errors",
+    "copy-files": "npm run copy-license && npm run copy-readme",
+    "npm_pack": "cd dist/xtream/ngx-validation-errors && npm pack",
+    "package": "npm run build_lib_prod && npm run copy-files && npm run npm_pack",
+    "semantic-release": "npx semantic-release"
   },
   "private": true,
   "dependencies": {
