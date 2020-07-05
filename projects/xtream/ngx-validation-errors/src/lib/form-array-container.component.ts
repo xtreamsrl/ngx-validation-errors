@@ -1,7 +1,7 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
-  Component, ComponentFactoryResolver,
+  Component,
+  ComponentFactoryResolver,
   ContentChild,
   ElementRef,
   Inject,
@@ -12,6 +12,7 @@ import {FormArrayName} from '@angular/forms';
 import {FormValidationContainer} from './form-validation-container';
 import {MESSAGES_PROVIDER} from './injection-tokens';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: '[ngxValidationErrorsArray], ngx-validation-errors-array, [formArrayContainer], form-array-container',
@@ -20,7 +21,7 @@ import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validatio
       <ng-container #errorsContainer></ng-container>
   `
 })
-export class FormArrayContainerComponent extends FormValidationContainer implements AfterViewInit {
+export class FormArrayContainerComponent extends FormValidationContainer {
 
   // tslint:disable-next-line:variable-name
   @ContentChild(FormArrayName, {static: true}) _formControl: FormArrayName;
@@ -34,7 +35,7 @@ export class FormArrayContainerComponent extends FormValidationContainer impleme
     // tslint:disable-next-line:variable-name
     private _renderer: Renderer2,
     // tslint:disable-next-line:variable-name
-    @Optional() @Inject(MESSAGES_PROVIDER) private _messageProvider: {instant(key: string): string;},
+    @Optional() @Inject(MESSAGES_PROVIDER) private _messageProvider: { instant(key: string): string; },
     // tslint:disable-next-line:variable-name
     private _cdRef: ChangeDetectorRef,
     // tslint:disable-next-line:variable-name
@@ -48,8 +49,12 @@ export class FormArrayContainerComponent extends FormValidationContainer impleme
     return this._formControl.control;
   }
 
-  get formControlName(): string| number {
+  get formControlName(): string | number {
     return this._formControl.name;
+  }
+
+  get statusChanges(): Observable<any> {
+    return this._formControl.control.statusChanges;
   }
 
   get el(): ElementRef<any> {
