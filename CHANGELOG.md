@@ -1,3 +1,27 @@
+# [2.0.0](https://github.com/xtreamsrl/ngx-validation-errors/compare/v1.0.0...v2.0.0) (2020-07-05)
+
+
+### Bug Fixes
+
+* update pipe creation and usage ([ad000db](https://github.com/xtreamsrl/ngx-validation-errors/commit/ad000db6ae74c1d4c745618b8fd4f01ee0a79ba2))
+
+
+### chore
+
+* update readme and package.json ([8adbfab](https://github.com/xtreamsrl/ngx-validation-errors/commit/8adbfabcdbd1f9300d924c364ca7bb0b2cf7cea8))
+
+
+### Features
+
+* update project to angular 9 ([f1b6410](https://github.com/xtreamsrl/ngx-validation-errors/commit/f1b641097942e32315662e4105584ba0d875f296))
+
+
+### BREAKING CHANGES
+
+* complete update to angular 9
+
+
+
 ## 0.4.0 (2020-01-11)
 
 ### Features
