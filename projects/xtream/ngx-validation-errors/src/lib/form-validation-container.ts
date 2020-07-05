@@ -1,10 +1,22 @@
-import {AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, HostBinding, Inject, Input, Optional, Renderer2, ViewChild, ViewContainerRef} from '@angular/core';
-import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
+import {ValidationErrorsConfig} from './error-validation-config';
 import {toScreamingSnakeCase} from './utils';
 import {AbstractControl} from '@angular/forms';
-import {MESSAGES_PROVIDER} from './ngx-validation-errors.module';
+import {Observable, Subscription} from 'rxjs';
 
-export abstract class FormValidationContainer implements AfterViewInit {
+export abstract class FormValidationContainer implements AfterContentInit, OnDestroy {
 
   @Input() customErrorMessages: {} = {};
   @Input() messageParams: {} = {};
@@ -17,46 +29,61 @@ export abstract class FormValidationContainer implements AfterViewInit {
   private validationContext;
   private componentRef: ComponentRef<any>;
 
+  @HostBinding('class.has-error')
+  public hasErrors: boolean;
+
+  @HostBinding('class.has-success')
+  public hasSuccess: boolean;
+
+  private subscription: Subscription;
+
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
-    @Optional() @Inject(MESSAGES_PROVIDER) private messageProvider: {instant(key: string): string;},
+    private messageProvider: { instant(key: string): string; },
     private cdRef: ChangeDetectorRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    @Inject(VALIDATION_ERROR_CONFIG) private  validationErrorsConfig: ValidationErrorsConfig) {
+    private validationErrorsConfig: ValidationErrorsConfig) {
     this.validationContext = validationErrorsConfig.defaultContext;
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.addErrorComponent();
-    this.updateErrorComponent();
+    this.subscription = this.statusChanges.subscribe(value => {
+      this.checkErrors();
+      this.checkSuccess();
+      this.updateErrorComponent();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   addErrorComponent() {
     if (this.errorsContainer && !this.componentRef) {
+      this.errorsContainer.clear();
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.validationErrorsConfig.errorComponent as any);
       this.componentRef = this.errorsContainer.createComponent(componentFactory);
     }
   }
 
   updateErrorComponent() {
-    this.addErrorComponent();
-
     if (this.componentRef) {
       this.componentRef.instance.innerValidationError = this.innerValidationError;
       this.componentRef.instance.messages = this.messages;
       this.componentRef.instance.params = this.messageParams;
-      this.componentRef.changeDetectorRef.detectChanges();
     }
   }
 
-  @HostBinding('class.has-error')
-  get hasErrors(): boolean {
+  checkErrors() {
     const hasError = (!this.formControl.valid && this.formControl.dirty && this.formControl.touched) && !this.validationDisabled;
     if (hasError && this.el && this.el.nativeElement) {
       this.messages = Object.keys(this.formControl.errors).map(error => {
         const fieldName = this.formControlName;
-        const errorKey = `${toScreamingSnakeCase(fieldName)}.ERRORS.${toScreamingSnakeCase(error)}`;
+        const errorKey = `${toScreamingSnakeCase(fieldName + '')}.ERRORS.${toScreamingSnakeCase(error)}`;
         if (this.messageProvider &&
           this.messageProvider.instant(`${this.validationContext}.${errorKey}`) === `${this.validationContext}.${errorKey}`) {
           return `${this.validationErrorsConfig.defaultContext}.ERRORS.${toScreamingSnakeCase(error)}`;
@@ -80,13 +107,11 @@ export abstract class FormValidationContainer implements AfterViewInit {
       this.renderer.addClass(this.el.nativeElement, 'is-invalid');
 
     }
-    this.updateErrorComponent();
 
-    return hasError;
+    this.hasErrors = hasError;
   }
 
-  @HostBinding('class.has-success')
-  get hasSuccess(): boolean {
+  checkSuccess(): void {
     const hasSuccess = (
       this.formControl.valid &&
       this.formControl.dirty && this.formControl.touched) &&
@@ -99,7 +124,7 @@ export abstract class FormValidationContainer implements AfterViewInit {
       } catch (e) {
       }
     }
-    return;
+    this.hasSuccess = hasSuccess;
   }
 
   public setValidationContext(context: string): void {
@@ -112,7 +137,9 @@ export abstract class FormValidationContainer implements AfterViewInit {
 
   abstract get formControl(): AbstractControl;
 
-  abstract get formControlName(): string;
+  abstract get statusChanges(): Observable<any>;
+
+  abstract get formControlName(): string | number;
 
   abstract get el(): ElementRef;
 

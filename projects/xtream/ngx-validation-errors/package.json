@@ -6,8 +6,11 @@
     "url": "https://github.com/xtreamsrl/ngx-validation-errors"
   },
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.0"
+    "@angular/common": "^9.1.11",
+    "@angular/core": "^9.1.11",
+    "@angular/forms": "^9.1.11"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
   }
 }

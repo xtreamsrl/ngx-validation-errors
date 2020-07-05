@@ -4,7 +4,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
 
 @Component({
-  selector: 'app-main-from',
+  selector: 'app-material-from',
   templateUrl: './material-from.component.html',
   styleUrls: ['./material-from.component.css']
 })

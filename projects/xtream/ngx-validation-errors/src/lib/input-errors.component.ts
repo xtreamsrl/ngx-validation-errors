@@ -8,7 +8,10 @@ import {ErrorsComponent} from './error-validation-config';
   selector: 'input-errors',
   template: `
       <div class="error-wrapper">
-          <span class="help-block" *ngFor="let message of messages;">{{ message | mapToMessage:params }}</span>
+          <span
+              class="help-block"
+              *ngFor="let message of messages;"
+          >{{ message | mapToMessage: params }}</span>
       </div>
   `,
   styleUrls: ['./input-errors.component.scss']
@@ -16,7 +19,7 @@ import {ErrorsComponent} from './error-validation-config';
 export class InputErrorsComponent implements ErrorsComponent {
 
   @Input() public messages: string[] = [];
-  @Input() public params: {[key: string]: any} = {};
+  @Input() public params: { [key: string]: any } = {};
   @Input() @HostBinding('class.is-inner') public innerValidationError: boolean;
 
   @Input()

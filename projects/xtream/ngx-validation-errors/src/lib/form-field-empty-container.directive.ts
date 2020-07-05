@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Directive, DoCheck, ElementRef, Inject, Input, Optional, Renderer2, TemplateRef, ViewContainerRef} from '@angular/core';
+import {Directive, DoCheck, Inject, Input, Optional, Renderer2, TemplateRef, ViewContainerRef} from '@angular/core';
 import {AbstractControl, ControlContainer, FormGroup, FormGroupDirective} from '@angular/forms';
 import {VALIDATION_ERROR_CONFIG, ValidationErrorsConfig} from './error-validation-config';
 import {toScreamingSnakeCase} from './utils';
-import {MESSAGES_PROVIDER} from './ngx-validation-errors.module';
+import {MESSAGES_PROVIDER} from './injection-tokens';
 
 export class ForFieldErrorsContext {
   constructor(public errors: string[]) {
