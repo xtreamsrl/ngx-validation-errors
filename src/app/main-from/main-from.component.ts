@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
+import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
 
 @Component({
   selector: 'app-main-from',
@@ -10,6 +11,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class MainFromComponent implements OnInit {
 
   heroForm: FormGroup;
+  @ViewChild('firstForm', {read: ValidationContextComponent, static: true}) validationContext: ValidationContextComponent;
 
   constructor(private translateService: TranslateService) {
     this.heroForm = new FormGroup({
@@ -21,5 +23,9 @@ export class MainFromComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.setDefaultLang('en');
     this.translateService.use('en');
+  }
+
+  reset(): void {
+    this.validationContext.clear();
   }
 }

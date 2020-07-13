@@ -3,7 +3,7 @@
   <img src="assets/images/logo-blu.svg"/>
 </div>
 <h2 style="text-align: center">xtream validation errors</h2>
-<form [formGroup]="heroForm" validationContext="NEW_HERO" innerValidationError="true">
+<form [formGroup]="heroForm" [appFormSubmit]="heroForm" #firstForm validationContext="NEW_HERO" innerValidationError="true">
   <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Name</label>
     <input class="form-control" formControlName="name"/>
@@ -12,7 +12,8 @@
     <label>Surmane</label>
     <input class="form-control" formControlName="surname"/>
   </div>
-  <button class="btn btn-primary" [disabled]="heroForm.invalid">Submit</button>
+  <button class="btn btn-primary">Submit</button>
+  <button class="btn btn-primary" type="button" (click)="reset()" )>Rest</button>
 
 </form>
 

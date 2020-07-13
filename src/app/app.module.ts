@@ -1,4 +1,4 @@
-import {BrowserModule, HammerModule } from '@angular/platform-browser';
+import {BrowserModule, HammerModule} from '@angular/platform-browser';
 import {ChangeDetectorRef, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';

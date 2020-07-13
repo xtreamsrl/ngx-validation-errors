@@ -6,7 +6,7 @@
   <button (click)="chooseLanguage('en')" class="btn btn-primary mr-2">en</button>
   <button (click)="chooseLanguage('it')" class="btn btn-secondary">it</button>
 </div>
-<form [formGroup]="heroForm" #firstForm validationContext="NEW_HERO" innerValidationError="true">
+<form [formGroup]="heroForm" [appFormSubmit]="heroForm" #firstForm validationContext="NEW_HERO" innerValidationError="true">
   <div ngxValidationErrorsField class="input-wrapper form-group">
     <label>Name</label>
     <input class="form-control" formControlName="name"/>
@@ -24,8 +24,8 @@
     </div>
   </div>
 
-  <button class="btn btn-primary" [disabled]="heroForm.invalid" style="margin-right: 15px">Submit</button>
-  <button class="btn btn-secondary" (click)="clearForm()">Clear</button>
+  <button class="btn btn-primary" style="margin-right: 15px">Submit</button>
+  <button class="btn btn-secondary" type="button" (click)="clearForm()">Clear</button>
 
 </form>
 
