@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/xtreamsrl/ngx-validation-errors/compare/v2.0.0...v2.1.0) (2020-07-13)
+
+
+### Features
+
+* add touch and dirty status reaction ([20c435e](https://github.com/xtreamsrl/ngx-validation-errors/commit/20c435eb0e220c97aa1ed44f5a29820086ef30aa))
+
+
+
 # [2.0.0](https://github.com/xtreamsrl/ngx-validation-errors/compare/v1.0.0...v2.0.0) (2020-07-05)
 
 
