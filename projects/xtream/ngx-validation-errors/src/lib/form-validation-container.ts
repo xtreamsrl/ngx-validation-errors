@@ -15,6 +15,7 @@ import {ValidationErrorsConfig} from './error-validation-config';
 import {toScreamingSnakeCase} from './utils';
 import {AbstractControl} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
+import {toChangeObservable} from './toChangeObservable';
 
 export abstract class FormValidationContainer implements AfterContentInit, OnDestroy {
 
@@ -49,7 +50,7 @@ export abstract class FormValidationContainer implements AfterContentInit, OnDes
 
   ngAfterContentInit(): void {
     this.addErrorComponent();
-    this.subscription = this.statusChanges.subscribe(value => {
+    this.subscription = toChangeObservable(this.formControl).subscribe(value => {
       this.checkErrors();
       this.checkSuccess();
       this.updateErrorComponent();
