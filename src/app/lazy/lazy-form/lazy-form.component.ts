@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TranslateService} from '@ngx-translate/core';
 import {ValidationContextComponent} from '@xtream/ngx-validation-errors';
+import {distinctUntilChanged, tap} from 'rxjs/operators';
 
 function minCheckSelected(size: number) {
   return (control: AbstractControl) => {
@@ -21,7 +22,10 @@ function minCheckSelected(size: number) {
 })
 export class LazyFormComponent implements OnInit {
 
-  @ViewChild('firstForm', {read: ValidationContextComponent, static: true}) validationContext: ValidationContextComponent;
+  @ViewChild('firstForm', {
+    read: ValidationContextComponent,
+    static: true
+  }) validationContext: ValidationContextComponent;
 
   heroForm: FormGroup;
 
@@ -35,9 +39,21 @@ export class LazyFormComponent implements OnInit {
   constructor(private translateService: TranslateService) {
     this.heroForm = new FormGroup({
       name: new FormControl(null, [Validators.required, Validators.minLength(4)]),
-      surname: new FormControl(null, [Validators.required, Validators.maxLength(1000)]),
+      surname: new FormControl({value: null, disabled: true}, [Validators.required, Validators.maxLength(1000)]),
       checkBoxes: new FormArray(this.boxesInfo.map(a => new FormControl()), [minCheckSelected(1)])
     });
+
+    this.heroForm.valueChanges.pipe(
+      distinctUntilChanged(),
+      tap(v => {
+        console.debug('v', v);
+        if (v.name) {
+          this.heroForm.controls['surname'].enable({emitEvent: false});
+        } else {
+          this.heroForm.controls['surname'].disable({emitEvent: false});
+        }
+      })
+    ).subscribe()
   }
 
   ngOnInit(): void {

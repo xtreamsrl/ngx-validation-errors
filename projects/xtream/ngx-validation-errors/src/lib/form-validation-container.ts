@@ -82,7 +82,7 @@ export abstract class FormValidationContainer implements AfterContentInit, OnDes
   checkErrors() {
     const hasError = (!this.formControl.valid && this.formControl.dirty && this.formControl.touched) && !this.validationDisabled;
     if (hasError && this.el && this.el.nativeElement) {
-      this.messages = Object.keys(this.formControl.errors).map(error => {
+      this.messages = Object.keys(this.formControl.errors || {}).map(error => {
         const fieldName = this.formControlName;
         const errorKey = `${toScreamingSnakeCase(fieldName + '')}.ERRORS.${toScreamingSnakeCase(error)}`;
         if (this.messageProvider &&
@@ -92,7 +92,7 @@ export abstract class FormValidationContainer implements AfterContentInit, OnDes
           return `${this.validationContext}.${errorKey}`;
         }
       });
-      const params = Object.values(this.formControl.errors).reduce((a, b) => {
+      const params = Object.values(this.formControl.errors || {}).reduce((a, b) => {
         a = {...a, ...b};
         return a;
       }, {});
