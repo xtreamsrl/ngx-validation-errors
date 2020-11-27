@@ -49,7 +49,7 @@ export class FormFieldEmptyContainerDirective implements DoCheck {
     const hasError = (!this.formControl.valid && this.formControl.touched) && !this.validationDisabled;
     let messages;
     if (hasError) {
-      messages = Object.keys(this.formControl.errors).map(error => {
+      messages = Object.keys(this.formControl.errors || {}).map(error => {
         const fieldName = this.formControlName;
         const errorKey = `${toScreamingSnakeCase(fieldName)}.ERRORS.${toScreamingSnakeCase(error)}`;
         if (this.messageProvider &&
@@ -59,7 +59,7 @@ export class FormFieldEmptyContainerDirective implements DoCheck {
           return `${this.validationContext}.${errorKey}`;
         }
       });
-      const params = Object.values(this.formControl.errors).reduce((a, b) => {
+      const params = Object.values(this.formControl.errors || {}).reduce((a, b) => {
         a = {...a, ...b};
         return a;
       }, {});
