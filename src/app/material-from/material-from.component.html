@@ -6,16 +6,16 @@
 
 
   <div style="display:flex;flex-direction: column;">
-    <mat-form-field *ngxValidationErrors="heroForm.get('name'); errors as errors">
+    <mat-form-field *ngxValidationErrors="heroForm.get('name'); errors as errors; params as params">
       <input matInput formControlName="name" placeholder="name"/>
-      <mat-error *ngIf="errors">{{errors}}</mat-error>
+      <mat-error *ngIf="errors">{{errors[0] | translate: params}}</mat-error>
     </mat-form-field>
   </div>
 
   <div style="display:flex;flex-direction: column;">
-    <mat-form-field *ngxValidationErrors="heroForm.get('surname'); errors as errors">
+    <mat-form-field *ngxValidationErrors="heroForm.get('surname'); errors as errors; params as params">
       <input matInput formControlName="surname" placeholder="surname"/>
-      <mat-error *ngIf="errors">{{errors}}</mat-error>
+      <mat-error *ngIf="errors">{{errors[0] | translate: params}}</mat-error>
     </mat-form-field>
   </div>
 
@@ -26,16 +26,16 @@
 
 <form [formGroup]="heroForm" validationContext="USER.REGISTRATION">
   <div style="display:flex;flex-direction: column;">
-    <mat-form-field  *ngxValidationErrors="heroForm.get('name');errors as errors">
+    <mat-form-field  *ngxValidationErrors="heroForm.get('name'); errors as errors; params as params">
       <input matInput formControlName="name" placeholder="name"/>
-      <mat-error *ngIf="errors">{{errors}}</mat-error>
+      <mat-error *ngIf="errors">{{errors[0] | translate: params}}</mat-error>
     </mat-form-field>
   </div>
 
   <div style="display:flex;flex-direction: column;">
-    <mat-form-field  *ngxValidationErrors="heroForm.get('surname');errors as errors">
+    <mat-form-field  *ngxValidationErrors="heroForm.get('surname'); errors as errors; params as params">
       <input matInput formControlName="surname" placeholder="surname"/>
-      <mat-error *ngIf="errors">{{errors}}</mat-error>
+      <mat-error *ngIf="errors">{{errors[0] | translate: params}}</mat-error>
     </mat-form-field>
   </div>
 

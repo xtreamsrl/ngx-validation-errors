@@ -5,7 +5,7 @@ import {toScreamingSnakeCase} from './utils';
 import {MESSAGES_PROVIDER} from './injection-tokens';
 
 export class ForFieldErrorsContext {
-  constructor(public errors: string[]) {
+  constructor(public errors: string[], public params: {} = {}) {
   }
 }
 
@@ -31,7 +31,7 @@ export class FormFieldEmptyContainerDirective implements DoCheck {
 
   public messages: string[];
   private validationContext;
-  private context = {errors: [] as string[]};
+  private context = {errors: [] as string[], params: {}};
 
   constructor(
     private renderer: Renderer2,
@@ -72,6 +72,7 @@ export class FormFieldEmptyContainerDirective implements DoCheck {
     if ((messages && !this.messages) || (!messages && this.messages) || (messages && messages[0] !== this.messages[0])) {
       this.messages = messages;
       this.context.errors = messages;
+      this.context.params = this.messageParams;
       if (this.rootEl) {
         if (messages) {
           this.renderer.addClass(this.rootEl, 'has-error');
